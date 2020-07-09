@@ -1,0 +1,55 @@
+﻿@page
+@model PizzaPlace.Pages.ViewOrdersModel
+@{
+    ViewData["Title"] = "ViewOrders";
+    Layout = "_LayoutDashboard";
+}
+    <div class="container">
+        <h1>Orders List</h1>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-page="OrdersList" class="btn btn-secondary">All</a>
+            <a asp-page="OrdersList" asp-page-handler="NotProcessed" class="btn btn-secondary">Not processed</a>
+            <a asp-page="OrdersList" asp-page-handler="Processed" class="btn btn-secondary">Processed</a>
+            <a asp-page="OrdersList" asp-page-handler="Done" class="btn btn-secondary">Done</a>
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Adress</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone</td>
+                        @if (!item.IsProccessed)
+                        {
+                            <td>
+                                <a asp-page-handler="SetProcessed" asp-route-id="@item.Id">Set Processed</a>
+                            </td>
+                        }
+                        else if (!item.IsDelivered)
+                        {
+                            <td>
+                                <a asp-page-handler="SetDelivered" asp-route-id="@item.Id">Set Delivered</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-success">Done</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>

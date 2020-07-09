@@ -1,0 +1,31 @@
+﻿@page
+@model PizzaPlace.Pages.Dashboard.EditOfferModel
+@{
+    ViewData["Title"] = "EditOffer";
+    Layout = "_LayoutDashboard";
+}
+
+<h1>EditOffer</h1>
+
+<div class="container" style="background-color:#dadada; margin-top:20px; padding:20px;">
+    <form asp-page="EditOffer" method="post">
+        <input asp-for="@Model.Offer.Id" type="hidden" />
+        <div class="form-group">
+            <label asp-for="@Model.Offer.Title">Title:</label>
+            <input asp-for="@Model.Offer.Title" class="form-control" placeholder="Enter Title">
+            <span asp-validation-for="@Model.Offer.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Offer.Description">Description:</label>
+            <textarea asp-for="@Model.Offer.Description" class="form-control" placeholder="Enter Description"></textarea>
+            <span asp-validation-for="@Model.Offer.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Offer.Price">Price:</label>
+            <input asp-for="@Model.Offer.Price" class="form-control">
+            <span asp-validation-for="@Model.Offer.Price" class="text-danger"></span>
+        </div>
+        <input asp-for="@Model.Offer.DateCreated" type="hidden" />
+        <button type="submit" class="btn btn-primary">Order</button>
+    </form>
+</div>

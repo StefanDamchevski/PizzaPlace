@@ -1,0 +1,33 @@
+﻿@page
+@model PizzaPlace.Pages.FeedbackModel
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+<h1>Feedback</h1>
+
+<div class="container" style="background-color:#dadada; margin-top:20px; padding:20px;">
+    <form asp-page="Feedback" method="post">
+        <div class="form-group">
+            <label asp-for="@Model.Feedback.Name">Name:</label>
+            <input asp-for="@Model.Feedback.Name" class="form-control" placeholder="Enter name">
+            <span asp-validation-for="@Model.Feedback.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Feedback.Surname">Surname:</label>
+            <input asp-for="@Model.Feedback.Surname" class="form-control" placeholder="Enter Surname">
+            <span asp-validation-for="@Model.Feedback.Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Feedback.EmailAdress">Email:</label>
+            <input asp-for="@Model.Feedback.EmailAdress" class="form-control" placeholder="Enter Email">
+            <span asp-validation-for="@Model.Feedback.EmailAdress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Feedback.Message">Message:</label>
+            <textarea asp-for="@Model.Feedback.Message" class="form-control" placeholder="Enter Message"></textarea>
+            <span asp-validation-for="@Model.Feedback.Message" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Order</button>
+    </form>
+</div>

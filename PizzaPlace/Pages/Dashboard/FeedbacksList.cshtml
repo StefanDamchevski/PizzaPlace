@@ -1,0 +1,32 @@
+﻿@page
+@model PizzaPlace.Pages.Dashboard.FeedbacksListModel
+@{
+    ViewData["Title"] = "FeedbacksList";
+    Layout = "_LayoutDashboard";
+}
+
+<h1>Feedbacks List</h1>
+
+<div class="container">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email Adress</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var feedback in Model.Feedbacks)
+            {
+                <tr>
+                    <td>@feedback.Name</td>
+                    <td>@feedback.Surname</td>
+                    <td>@feedback.EmailAdress</td>
+                    <td>@feedback.Message</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

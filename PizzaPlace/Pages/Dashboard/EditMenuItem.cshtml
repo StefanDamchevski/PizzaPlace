@@ -1,0 +1,36 @@
+﻿@page
+@model PizzaPlace.Pages.Dashboard.EditMenuItemModel
+@{
+    ViewData["Title"] = "EditMenuItem";
+    Layout = "_LayoutDashboard";
+}
+
+<h1>EditMenuItem</h1>
+
+<div class="container" style="background-color:#dadada; margin-top:20px; padding:20px;">
+    <form asp-page="EditMenuItem" method="post">
+        <input asp-for="@Model.MenuItem.Id" type="hidden" />
+        <div class="form-group">
+            <label asp-for="@Model.MenuItem.Title">Title:</label>
+            <input asp-for="@Model.MenuItem.Title" class="form-control" placeholder="Enter Title">
+            <span asp-validation-for="@Model.MenuItem.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.MenuItem.ImageUrl">Image Url:</label>
+            <input asp-for="@Model.MenuItem.ImageUrl" class="form-control">
+            <span asp-validation-for="@Model.MenuItem.ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.MenuItem.Description">Description:</label>
+            <textarea asp-for="@Model.MenuItem.Description" class="form-control" placeholder="Enter Description"></textarea>
+            <span asp-validation-for="@Model.MenuItem.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.MenuItem.Price">Price:</label>
+            <input asp-for="@Model.MenuItem.Price" class="form-control">
+            <span asp-validation-for="@Model.MenuItem.Price" class="text-danger"></span>
+        </div>
+        <input asp-for="@Model.MenuItem.DateCreated" type="hidden" />
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>

@@ -1,0 +1,58 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@model PizzaPlace.Pages.Dashboard.UsersListModel
+@{
+    ViewData["Title"] = "UsersList";
+    Layout = "_LayoutDashboard";
+}
+
+@inject UserManager<IdentityUser> UserManager
+
+<h1 style="text-align:center">Users List</h1>
+
+<div class="container">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Manage Roles</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>
+                        @foreach (var role in await UserManager.GetRolesAsync(user))
+                        {
+                            <p>@role</p>
+                        }
+                    </td>
+                    <td>
+                        @foreach (var role in Model.Roles)
+                        {
+                            if (await UserManager.IsInRoleAsync(user, role.Name))
+                            {
+                                <p>
+                                    <a asp-page-handler="RemoveRole" asp-route-roleName="@role.Name" asp-route-userId="@user.Id" class="text-danger">Remove @role.Name.ToLower() role</a>
+                                </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <a asp-page-handler="AddRole" asp-route-roleName="@role.Name" asp-route-userId="@user.Id" class="text-success">Add @role.Name.ToLower() role</a>
+                                </p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <a asp-page-handler="DeleteUser" asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to delete @user.Email')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

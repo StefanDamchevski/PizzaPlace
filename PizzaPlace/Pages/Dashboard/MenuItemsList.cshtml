@@ -1,0 +1,34 @@
+﻿@page
+@model PizzaPlace.Pages.Dashboard.MenuItemsListModel
+@{
+    ViewData["Title"] = "MenuItemsList";
+    Layout = "_LayoutDashboard";
+}
+
+<h1 style="text-align:center;">MenuItemsList</h1>
+
+<div class="container">
+    <a asp-page="CreateMenuItem" class="btn btn-secondary">Create Menu Item</a>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>DateCreated</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MenuItems)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.DateCreated.ToString("dd MMMM yyyy")</td>
+                    <td>
+                        <a asp-page="EditMenuItem" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page-handler="DeleteMenuItem" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete @item.Title?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

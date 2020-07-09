@@ -1,0 +1,16 @@
+﻿@page "{id}"
+@model PizzaPlace.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="container">
+    <img src="@Model.MenuViewModel.ImageUrl" />
+    <h1 style="text-align:center">@Model.MenuViewModel.Title</h1>
+
+    <p style="text-align:center">@Model.MenuViewModel.Description</p>
+
+    <h2>Price: @Model.MenuViewModel.Price</h2>
+</div>

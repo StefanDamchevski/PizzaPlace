@@ -1,0 +1,40 @@
+﻿@page
+@model PizzaPlace.Pages.Dashboard.MenuModel
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "_LayoutDashboard";
+}
+
+    <h1 style="text-align:center">Menu</h1>
+
+    <div class="container">
+        @if (User.IsInRole("Admin"))
+        {
+            <h2>Orders: </h2>
+            <a asp-page="OrdersList" class="btn btn-secondary">All</a>
+            <a asp-page="OrdersList" asp-page-handler="NotProcessed" class="btn btn-secondary">Not processed</a>
+            <a asp-page="OrdersList" asp-page-handler="Processed" class="btn btn-secondary">Processed</a>
+            <a asp-page="OrdersList" asp-page-handler="Done" class="btn btn-secondary">Done</a>
+            <h2>Users: </h2>
+            <a asp-page="UsersList" class="btn btn-secondary">Users</a>
+            <a href="/Admin/Register" class="btn btn-secondary">Create User</a>
+            <h2>Offers</h2>
+            <a asp-page="OffersList" class="btn btn-secondary">Manage Offers</a>
+            <h2>Menu Items</h2>
+            <a asp-page="MenuItemsList" class="btn btn-secondary">Manage Menu Items</a>
+            <h2>Feedbacks</h2>
+            <a asp-page="FeedbacksList" class="btn btn-secondary">View All Feedbacks</a>
+        }
+
+        @if (User.IsInRole("Cook"))
+        {
+            <h2>Orders: </h2>
+            <a asp-page="OrdersList" asp-page-handler="NotProcessed" class="btn btn-secondary">Not processed</a>
+        }
+
+        @if (User.IsInRole("Delivery"))
+        {
+            <h2>Orders: </h2>
+            <a asp-page="OrdersList" asp-page-handler="Processed" class="btn btn-secondary">Processed</a>
+        }
+    </div>
